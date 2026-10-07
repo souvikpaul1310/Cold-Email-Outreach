@@ -1,0 +1,12 @@
+{
+  "actorSpecification": 1,
+  "name": "cold-lead-finder-apify-actors",
+  "title": "Cold Lead Finder (Apify Google Maps + Contact Scraper)",
+  "description": "Finds businesses in any location with Apify's Google Maps Scraper, enriches emails/owners with Apify's contact & leads add-ons, audits each website and scores leads for SEO, PPC and web-development cold outreach.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "storages": { "dataset": "./dataset_schema.json" },
+  "defaultMemoryMbytes": 1024
+}

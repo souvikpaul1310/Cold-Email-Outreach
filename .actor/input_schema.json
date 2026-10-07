@@ -1,0 +1,159 @@
+{
+  "title": "Cold Lead Finder (Apify actors)",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchTerms": {
+      "title": "🔍 What businesses to target",
+      "type": "array",
+      "description": "Business types as you would search Google Maps, e.g. \"dentist\", \"roofing contractor\", \"law firm\".",
+      "editor": "stringList",
+      "prefill": ["dentist"],
+      "sectionCaption": "Search"
+    },
+    "locations": {
+      "title": "📍 Locations",
+      "type": "array",
+      "description": "Any city, region or postal code, e.g. \"Toronto, ON, Canada\", \"Austin, TX\", \"Salt Lake, Kolkata\". Each location is one Google Maps Scraper run.",
+      "editor": "stringList",
+      "prefill": ["Toronto, ON, Canada"]
+    },
+    "maxPlacesPerSearch": {
+      "title": "Max businesses per search term",
+      "type": "integer",
+      "description": "Passed to Google Maps Scraper as maxCrawledPlacesPerSearch. Google Maps Scraper automatically splits big areas, so large numbers work.",
+      "default": 50,
+      "minimum": 1
+    },
+    "language": {
+      "title": "Language",
+      "type": "string",
+      "default": "en",
+      "editor": "textfield"
+    },
+    "skipClosedPlaces": {
+      "title": "Skip closed businesses",
+      "type": "boolean",
+      "default": true
+    },
+    "websiteFilter": {
+      "title": "Website filter",
+      "type": "string",
+      "description": "Only businesses with a website (SEO/PPC pitches) or only without one (web-development pitches).",
+      "editor": "select",
+      "enum": ["allPlaces", "withWebsite", "withoutWebsite"],
+      "enumTitles": ["All businesses", "Only with a website", "Only without a website"],
+      "default": "allPlaces"
+    },
+    "placeMinimumStars": {
+      "title": "Minimum star rating (optional)",
+      "type": "string",
+      "editor": "select",
+      "enum": ["any", "two", "twoAndHalf", "three", "threeAndHalf", "four", "fourAndHalf"],
+      "enumTitles": ["Any", "2+", "2.5+", "3+", "3.5+", "4+", "4.5+"],
+      "default": "any"
+    },
+    "scrapeContacts": {
+      "title": "Find emails & socials (Google Maps Scraper add-on)",
+      "type": "boolean",
+      "description": "Google Maps Scraper's 'Company contacts enrichment' — visits each website for emails and social profiles. Billed by Google Maps Scraper.",
+      "default": true,
+      "sectionCaption": "Contact & owner enrichment"
+    },
+    "ownerEnrichmentPerPlace": {
+      "title": "Owner / decision-maker records per business",
+      "type": "integer",
+      "description": "Google Maps Scraper's 'Business leads enrichment' add-on: employee names, job titles, work emails, LinkedIn. 0 = off. This add-on is charged per record by Apify — start with 1–2.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "leadsEnrichmentDepartments": {
+      "title": "Decision-maker departments (optional)",
+      "type": "array",
+      "description": "Filter for the leads add-on, using the department values Google Maps Scraper accepts (e.g. \"c_suite\"). Leave empty for no filter — this actor already ranks Owner/Founder/CEO first.",
+      "editor": "stringList",
+      "default": []
+    },
+    "useContactDetailsScraper": {
+      "title": "Deep email search with Contact Details Scraper",
+      "type": "boolean",
+      "description": "For businesses that still have no email, runs Apify's Contact Details Scraper (vdrmota/contact-info-scraper) across their site.",
+      "default": true
+    },
+    "contactScraperMaxPagesPerSite": {
+      "title": "Contact Details Scraper: pages per site",
+      "type": "integer",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 30
+    },
+    "auditWebsites": {
+      "title": "Audit websites & look for owner names",
+      "type": "boolean",
+      "description": "Cheap HTTP check of each website: HTTPS, mobile, meta tags, Google Ads/Analytics/Meta Pixel, outdated footer — plus owner/founder names from About/Team pages. Powers the lead score and pitch angles.",
+      "default": true
+    },
+    "maxPagesPerWebsite": {
+      "title": "Audit: pages per website",
+      "type": "integer",
+      "default": 3,
+      "minimum": 1,
+      "maximum": 10
+    },
+    "onlyWithEmail": {
+      "title": "Only save leads that have an email",
+      "type": "boolean",
+      "default": false,
+      "sectionCaption": "Lead filters"
+    },
+    "onlyWithoutWebsite": {
+      "title": "Only save businesses WITHOUT a website",
+      "type": "boolean",
+      "default": false
+    },
+    "minLeadScore": {
+      "title": "Minimum lead score (0–100)",
+      "type": "integer",
+      "description": "55+ = Hot, 35+ = Warm.",
+      "default": 0,
+      "minimum": 0,
+      "maximum": 100
+    },
+    "maxRating": {
+      "title": "Only businesses rated at or below",
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "excludeKeywords": {
+      "title": "Exclude businesses containing",
+      "type": "array",
+      "editor": "stringList",
+      "default": []
+    },
+    "mapsScraperExtraInput": {
+      "title": "Extra Google Maps Scraper input (advanced)",
+      "type": "object",
+      "description": "Any extra fields passed straight to compass/crawler-google-places, e.g. {\"countryCode\":\"ca\", \"categoryFilterWords\":[\"dentist\"]}. Overrides the fields above.",
+      "editor": "json",
+      "default": {},
+      "sectionCaption": "Advanced"
+    },
+    "childActorMemoryMbytes": {
+      "title": "Memory for the called actors (MB)",
+      "type": "integer",
+      "default": 4096,
+      "minimum": 512,
+      "maximum": 32768
+    },
+    "proxyConfiguration": {
+      "title": "Proxy for the website audit",
+      "type": "object",
+      "editor": "proxy",
+      "prefill": { "useApifyProxy": true },
+      "default": { "useApifyProxy": true }
+    }
+  },
+  "required": ["searchTerms", "locations"]
+}

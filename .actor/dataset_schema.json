@@ -1,0 +1,78 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "leads": {
+      "title": "Cold leads",
+      "description": "Outreach-ready view: who to contact and why.",
+      "transformation": {
+        "fields": [
+          "leadTier", "leadScore", "businessName", "category", "ownerName", "ownerTitle", "email",
+          "phone", "website", "city", "address", "rating", "reviewsCount", "recommendedServices", "pitchAngles"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "leadTier": { "label": "Tier", "format": "text" },
+          "leadScore": { "label": "Score", "format": "number" },
+          "businessName": { "label": "Business", "format": "text" },
+          "category": { "label": "Category", "format": "text" },
+          "ownerName": { "label": "Owner / decision-maker", "format": "text" },
+          "ownerTitle": { "label": "Title", "format": "text" },
+          "email": { "label": "Email", "format": "text" },
+          "phone": { "label": "Phone", "format": "text" },
+          "website": { "label": "Website", "format": "link" },
+          "city": { "label": "City", "format": "text" },
+          "address": { "label": "Address", "format": "text" },
+          "rating": { "label": "Rating", "format": "number" },
+          "reviewsCount": { "label": "Reviews", "format": "number" },
+          "recommendedServices": { "label": "Pitch services", "format": "text" },
+          "pitchAngles": { "label": "Pitch angles", "format": "text" }
+        }
+      }
+    },
+    "contacts": {
+      "title": "All contact details",
+      "transformation": {
+        "fields": [
+          "businessName", "ownerName", "ownerEmail", "ownerLinkedIn", "ownerConfidence", "otherDecisionMakers",
+          "email", "emailType", "allEmails", "phone", "website", "facebook", "instagram", "linkedin", "twitter",
+          "youtube", "tiktok", "googleMapsUrl"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "website": { "format": "link" },
+          "googleMapsUrl": { "label": "Google Maps", "format": "link" },
+          "facebook": { "format": "link" },
+          "instagram": { "format": "link" },
+          "linkedin": { "format": "link" }
+        }
+      }
+    },
+    "audit": {
+      "title": "Website audit",
+      "transformation": {
+        "fields": ["businessName", "website", "websiteAudit", "isClaimed", "rating", "reviewsCount"],
+        "flatten": ["websiteAudit"]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "website": { "format": "link" },
+          "websiteAudit.usesHttps": { "label": "HTTPS", "format": "boolean" },
+          "websiteAudit.mobileFriendly": { "label": "Mobile", "format": "boolean" },
+          "websiteAudit.hasMetaDescription": { "label": "Meta desc", "format": "boolean" },
+          "websiteAudit.hasGoogleAnalytics": { "label": "GA", "format": "boolean" },
+          "websiteAudit.hasGoogleAdsTag": { "label": "Google Ads", "format": "boolean" },
+          "websiteAudit.hasMetaPixel": { "label": "Meta Pixel", "format": "boolean" },
+          "websiteAudit.cms": { "label": "CMS", "format": "text" },
+          "websiteAudit.copyrightYear": { "label": "© year", "format": "number" },
+          "isClaimed": { "label": "GBP claimed", "format": "boolean" }
+        }
+      }
+    }
+  }
+}
