@@ -8,7 +8,9 @@
       "type": "array",
       "description": "Business types as you would search Google Maps, e.g. \"dentist\", \"roofing contractor\", \"law firm\".",
       "editor": "stringList",
-      "prefill": ["dentist"],
+      "prefill": [
+        "dentist"
+      ],
       "sectionCaption": "Search"
     },
     "locations": {
@@ -16,7 +18,9 @@
       "type": "array",
       "description": "Any city, region or postal code, e.g. \"Toronto, ON, Canada\", \"Austin, TX\", \"Salt Lake, Kolkata\". Each location is one Google Maps Scraper run.",
       "editor": "stringList",
-      "prefill": ["Toronto, ON, Canada"]
+      "prefill": [
+        "Toronto, ON, Canada"
+      ]
     },
     "maxPlacesPerSearch": {
       "title": "Max businesses per search term",
@@ -29,29 +33,56 @@
       "title": "Language",
       "type": "string",
       "default": "en",
-      "editor": "textfield"
+      "editor": "textfield",
+      "description": "Google Maps interface / results language code, e.g. \"en\". Keep \"en\" for best parsing."
     },
     "skipClosedPlaces": {
       "title": "Skip closed businesses",
       "type": "boolean",
-      "default": true
+      "default": true,
+      "description": "Skip places marked as permanently or temporarily closed on Google Maps."
     },
     "websiteFilter": {
       "title": "Website filter",
       "type": "string",
       "description": "Only businesses with a website (SEO/PPC pitches) or only without one (web-development pitches).",
       "editor": "select",
-      "enum": ["allPlaces", "withWebsite", "withoutWebsite"],
-      "enumTitles": ["All businesses", "Only with a website", "Only without a website"],
+      "enum": [
+        "allPlaces",
+        "withWebsite",
+        "withoutWebsite"
+      ],
+      "enumTitles": [
+        "All businesses",
+        "Only with a website",
+        "Only without a website"
+      ],
       "default": "allPlaces"
     },
     "placeMinimumStars": {
       "title": "Minimum star rating (optional)",
       "type": "string",
       "editor": "select",
-      "enum": ["any", "two", "twoAndHalf", "three", "threeAndHalf", "four", "fourAndHalf"],
-      "enumTitles": ["Any", "2+", "2.5+", "3+", "3.5+", "4+", "4.5+"],
-      "default": "any"
+      "enum": [
+        "any",
+        "two",
+        "twoAndHalf",
+        "three",
+        "threeAndHalf",
+        "four",
+        "fourAndHalf"
+      ],
+      "enumTitles": [
+        "Any",
+        "2+",
+        "2.5+",
+        "3+",
+        "3.5+",
+        "4+",
+        "4.5+"
+      ],
+      "default": "any",
+      "description": "Only include businesses with at least this Google rating."
     },
     "scrapeContacts": {
       "title": "Find emails & socials (Google Maps Scraper add-on)",
@@ -86,7 +117,8 @@
       "type": "integer",
       "default": 5,
       "minimum": 1,
-      "maximum": 30
+      "maximum": 30,
+      "description": "Maximum pages Contact Details Scraper visits on each website."
     },
     "auditWebsites": {
       "title": "Audit websites & look for owner names",
@@ -99,18 +131,21 @@
       "type": "integer",
       "default": 3,
       "minimum": 1,
-      "maximum": 10
+      "maximum": 10,
+      "description": "Homepage plus the most relevant About / Team / Contact pages to visit per website."
     },
     "onlyWithEmail": {
       "title": "Only save leads that have an email",
       "type": "boolean",
       "default": false,
-      "sectionCaption": "Lead filters"
+      "sectionCaption": "Lead filters",
+      "description": "Only save businesses where at least one email address was found."
     },
     "onlyWithoutWebsite": {
       "title": "Only save businesses WITHOUT a website",
       "type": "boolean",
-      "default": false
+      "default": false,
+      "description": "Only save businesses that have no website listed (ideal for web-development pitches)."
     },
     "minLeadScore": {
       "title": "Minimum lead score (0–100)",
@@ -124,13 +159,15 @@
       "title": "Only businesses rated at or below",
       "type": "number",
       "minimum": 1,
-      "maximum": 5
+      "maximum": 5,
+      "description": "Optional. Only save businesses whose Google rating is at or below this value, e.g. 4.2."
     },
     "excludeKeywords": {
       "title": "Exclude businesses containing",
       "type": "array",
       "editor": "stringList",
-      "default": []
+      "default": [],
+      "description": "Skip businesses whose name or category contains any of these words, e.g. chains like \"Walmart\"."
     },
     "mapsScraperExtraInput": {
       "title": "Extra Google Maps Scraper input (advanced)",
@@ -145,15 +182,24 @@
       "type": "integer",
       "default": 4096,
       "minimum": 512,
-      "maximum": 32768
+      "maximum": 32768,
+      "description": "Memory (MB) given to the Google Maps Scraper and Contact Details Scraper runs."
     },
     "proxyConfiguration": {
       "title": "Proxy for the website audit",
       "type": "object",
       "editor": "proxy",
-      "prefill": { "useApifyProxy": true },
-      "default": { "useApifyProxy": true }
+      "prefill": {
+        "useApifyProxy": true
+      },
+      "default": {
+        "useApifyProxy": true
+      },
+      "description": "Proxy used for fetching business websites. Apify Proxy is recommended."
     }
   },
-  "required": ["searchTerms", "locations"]
+  "required": [
+    "searchTerms",
+    "locations"
+  ]
 }
