@@ -1,0 +1,15 @@
+{
+  "name": "cold-lead-finder-apify-actors",
+  "version": "1.0.0",
+  "description": "Cold-outreach lead finder that orchestrates Apify's Google Maps Scraper and Contact Details Scraper, then audits websites and scores leads for SEO/PPC/web-dev outreach.",
+  "type": "module",
+  "main": "src/main.js",
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node src/main.js" },
+  "dependencies": {
+    "apify": "^3.2.6",
+    "cheerio": "^1.0.0",
+    "crawlee": "^3.11.5"
+  },
+  "license": "UNLICENSED"
+}
