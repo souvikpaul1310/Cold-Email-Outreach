@@ -1,2 +1,0 @@
-# Cold-Email-Outreach
-asdf
